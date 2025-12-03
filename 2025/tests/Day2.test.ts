@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { allPartsAreDivisible, isRepeatingCharacter, missMatchId, oddOneOut } from "../Day2";
+import { allPartsAreDivisible, isRepeatingCharacter, missMatchId } from "../Day2";
 
 interface testPairs { input: number, output: number };
 
