@@ -38,47 +38,6 @@ describe("Day 2 tests", () => {
             })
         })
 
-        test("expect oddOneOut to be working", () => {
-            const testCases = [
-                {
-                    case: '55',
-                    output: false,
-                },
-                {
-                    case: '555',
-                    output: false,
-                },
-                {
-                    case: '555555555555',
-                    output: false,
-                },
-                {
-                    case: '11223344555566778899',
-                    output: false,
-                },
-                {
-                    case: '455',
-                    output: true,
-                },
-                {
-                    case: '545',
-                    output: true,
-                },
-                {
-                    case: '555555665555575',
-                    output: true,
-                },
-                {
-                    case: '1122334455667788990',
-                    output: true,
-                },
-            ]
-
-            testCases.forEach(obj => {
-                expect(oddOneOut(obj.case)).toBe(obj.output);
-            })
-        })
-
         test("allPartsAreDivisible evaluates correctly", () => {
             const allPartsAreDivisiblePairs = [
                 { parts: [56, 56, 56], output: true, },

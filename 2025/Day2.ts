@@ -1,4 +1,4 @@
-const primeNo: number[] = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,];
+const primeNo: number[] = [2, 3, 5, 7, 11, 13, 17, 19, 23,];
 
 export const isRepeatingCharacter = (str: string): boolean => {
     for (const ch of String(str)) {
@@ -8,22 +8,6 @@ export const isRepeatingCharacter = (str: string): boolean => {
     }
 
     return true;
-}
-
-export const oddOneOut = (str: string): boolean => {
-    let counts: Record<string, number> = {};
-
-    for (const char of str) {
-        counts[char] = (counts[char] || 0) + 1;
-    }
-
-    for (const key in counts) {
-        if (counts[key] === 1) {
-            return true;
-        }
-    }
-
-    return false;
 }
 
 export const Day2A = (values: string[]): void => {
@@ -76,17 +60,6 @@ export const Day2B = (values: string[]): void => {
     // 52,316,131,093 => too low (part A answer, should be lower because there should be more invalid's)
 }
 
-const splitIntoChunks = (str: string, parts: number): number[] => {
-    const length = str.length / parts;
-    const chunks: string[] = [];
-
-    for (let i = 0; i < str.length; i += length) {
-        chunks.push(str.slice(i, i + length))
-    }
-
-    return chunks.map(Number);
-}
-
 export const missMatchId = (num: number): number => {
     if (isRepeatingCharacter(String(num))) {
         return num;
@@ -94,10 +67,6 @@ export const missMatchId = (num: number): number => {
 
     const numberLength: number = String(num).length;
     if (primeNo.includes(numberLength)) {
-        return 0;
-    }
-
-    if (oddOneOut(String(num))) {
         return 0;
     }
 
@@ -114,6 +83,17 @@ export const missMatchId = (num: number): number => {
     }
 
     return 0;
+}
+
+const splitIntoChunks = (str: string, parts: number): number[] => {
+    const length = str.length / parts;
+    const chunks: string[] = [];
+
+    for (let i = 0; i < str.length; i += length) {
+        chunks.push(str.slice(i, i + length))
+    }
+
+    return chunks.map(Number);
 }
 
 export const allPartsAreDivisible = (numArr: number[]): boolean => {
