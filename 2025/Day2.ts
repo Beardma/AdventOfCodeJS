@@ -55,59 +55,14 @@ export const Day2B = (values: string[]): void => {
         const end: number = Number(values[i]!.slice(indexHyphen + 1));
 
         for (let j = start; j <= end; j++) {
-            // console.log(`Processing number: ${j}`);
-            if (isRepeatingCharacter(String(j))) {
-                // console.log(`Repeating Number!`);
-                // console.log(`--- DONE ---`);
-                total += j;
-                continue;
-            }
-            const numberLength: number = String(j).length;
-            if (primeNo.includes(numberLength)) {
-                // console.log(`Prime and not repeating!`);
-                // console.log(`--- DONE ---`);
-                continue;
-            }
-
-            if (oddOneOut(String(j))) {
-                // console.log(`Odd one out!`);
-                // console.log(`--- DONE ---`);
-                continue;
-            }
-
-            for (let k = 2; k <= numberLength / 2; k++) {
-                if (numberLength % k !== 0) {
-                    continue;
-                }
-
-                const strArr: number[] = splitIntoChunks(String(j), k);
-                // if (j > 5000) {
-                //     console.log(strArr);
-                // }
-                let arePartsEqual: boolean = true;
-
-                for (let l = 1; l < k; l++) {
-                    for (let m = 0; m < l; m++) {
-                        if (strArr[l] !== strArr[m]) {
-                            // console.log(`Parts NOT equal! m-index: ${m}, m-value: ${strArr[m]}, l-index: ${l}, l-value: ${strArr[l]}`);
-                            arePartsEqual = false;
-                        }
-                    }
-                }
-
-                if (arePartsEqual) {
-                    // console.log('Parts are equal!');
-                    total += j;
-                    break;
-                }
-            }
-            // console.log(`--- DONE ---`);
+            total += missMatchId(j);
         }
     }
 
     console.log(`Day2A: The total of the invalid ID codes is: ${total}`);
     // Tries
-    // 69564213338 => Too high
+    // 69,564,213,338 => Too high
+    // 25,924,326 => Too low
 }
 
 const splitIntoChunks = (str: string, parts: number): number[] => {
@@ -119,4 +74,48 @@ const splitIntoChunks = (str: string, parts: number): number[] => {
     }
 
     return chunks.map(Number);
+}
+
+export const missMatchId = (num: number): number => {
+    // console.log(`Processing number: ${j}`);
+    if (isRepeatingCharacter(String(num))) {
+        // console.log(`Repeating Number!`);
+        // console.log(`--- DONE ---`);
+        return num;
+    }
+
+    const numberLength: number = String(num).length;
+    if (primeNo.includes(numberLength)) {
+        // console.log(`Prime and not repeating!`);
+        // console.log(`--- DONE ---`);
+        return 0;
+    }
+
+    if (oddOneOut(String(num))) {
+        // console.log(`Odd one out!`);
+        // console.log(`--- DONE ---`);
+        return 0;
+    }
+
+    for (let k = 2; k <= numberLength / 2; k++) {
+        if (numberLength % k !== 0) {
+            return 0;
+        }
+
+        const strArr: number[] = splitIntoChunks(String(num), k);
+        // if (j > 5000) {
+        //     console.log(strArr);
+        // }
+
+        for (let l = 1; l < k; l++) {
+            for (let m = 0; m < l; m++) {
+                if (strArr[l] !== strArr[m]) {
+                    // console.log(`Parts NOT equal! m-index: ${m}, m-value: ${strArr[m]}, l-index: ${l}, l-value: ${strArr[l]}`);
+                    return 0;
+                }
+            }
+        }
+    }
+
+    return num;
 }
