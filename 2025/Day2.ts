@@ -1,6 +1,6 @@
 const primeNo: number[] = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,];
 
-const isRepeatingCharacter = (str: string): boolean => {
+export const isRepeatingCharacter = (str: string): boolean => {
     for (const ch of String(str)) {
         if (ch !== String(str)[0]) {
             return false;
@@ -10,7 +10,7 @@ const isRepeatingCharacter = (str: string): boolean => {
     return true;
 }
 
-const oddOneOut = (str: string): boolean => {
+export const oddOneOut = (str: string): boolean => {
     let counts: Record<string, number> = {};
 
     for (const char of str) {
@@ -27,7 +27,7 @@ const oddOneOut = (str: string): boolean => {
 }
 
 export const Day2A = (values: string[]): void => {
-    let total: number = 0;
+    let totalPartA: number = 0;
     for (let i = 0; i < values.length; i++) {
         const indexHyphen: number = values[i]!.indexOf('-');
         const start: number = Number(values[i]!.slice(0, indexHyphen));
@@ -39,29 +39,40 @@ export const Day2A = (values: string[]): void => {
             }
 
             if (String(j).slice(0, String(j).length / 2) === String(j).slice(String(j).length / 2)) {
-                total += j;
+                totalPartA += j;
             }
         }
     }
 
-    console.log(`Day2A: The total of the invalid ID codes is: ${total}`);
+    console.log(`Day2A: The total of the invalid ID codes is: ${totalPartA}`);
+}
+
+let totalPartB = 0;
+const setTotal = (num: number): void => {
+    totalPartB = num;
+}
+const getTotal = (): number => {
+    return totalPartB;
 }
 
 export const Day2B = (values: string[]): void => {
-    let total: number = 0;
     for (let i = 0; i < values.length; i++) {
         const indexHyphen: number = values[i]!.indexOf('-');
         const start: number = Number(values[i]!.slice(0, indexHyphen));
         const end: number = Number(values[i]!.slice(indexHyphen + 1));
 
         for (let j = start; j <= end; j++) {
-            total += missMatchId(j);
+            const num = missMatchId(j);
+            if (num !== 0) {
+                setTotal(getTotal() + num);
+            }
         }
     }
 
-    console.log(`Day2A: The total of the invalid ID codes is: ${total}`);
+    console.log(`Day2B: The total of the invalid ID codes is: ${getTotal()}`);
     // Tries
     // 69,564,213,338 => Too high
+    // 52,316,131,093 => too low (part A answer, should be lower because there should be more invalid's)
     // 25,924,326 => Too low
 }
 
@@ -77,45 +88,40 @@ const splitIntoChunks = (str: string, parts: number): number[] => {
 }
 
 export const missMatchId = (num: number): number => {
-    // console.log(`Processing number: ${j}`);
     if (isRepeatingCharacter(String(num))) {
-        // console.log(`Repeating Number!`);
-        // console.log(`--- DONE ---`);
         return num;
     }
 
     const numberLength: number = String(num).length;
     if (primeNo.includes(numberLength)) {
-        // console.log(`Prime and not repeating!`);
-        // console.log(`--- DONE ---`);
         return 0;
     }
 
     if (oddOneOut(String(num))) {
-        // console.log(`Odd one out!`);
-        // console.log(`--- DONE ---`);
         return 0;
     }
 
     for (let k = 2; k <= numberLength / 2; k++) {
         if (numberLength % k !== 0) {
-            return 0;
+            continue;
         }
 
-        const strArr: number[] = splitIntoChunks(String(num), k);
-        // if (j > 5000) {
-        //     console.log(strArr);
-        // }
+        const chunks: number[] = splitIntoChunks(String(num), k);
 
-        for (let l = 1; l < k; l++) {
-            for (let m = 0; m < l; m++) {
-                if (strArr[l] !== strArr[m]) {
-                    // console.log(`Parts NOT equal! m-index: ${m}, m-value: ${strArr[m]}, l-index: ${l}, l-value: ${strArr[l]}`);
-                    return 0;
-                }
-            }
+        if (allPartsAreDivisible(chunks)) {
+            return num;
         }
     }
 
-    return num;
+    return 0;
+}
+
+export const allPartsAreDivisible = (numArr: number[]): boolean => {
+    for (let i = 0; i < numArr.length; i++) {
+        if (numArr[i] !== numArr[0]) {
+            return false;
+        }
+    }
+
+    return true;
 }

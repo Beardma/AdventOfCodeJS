@@ -6,7 +6,7 @@ import { getInput, getInput as getInputDay2 } from './2025/inputs/Day2inputs';
 const main = () => {
     // Day1A(getTextDay1());
     // Day1B(getTextDay1());
-    // Day2A(getInputDay2());
+    Day2A(getInputDay2());
     Day2B(getInputDay2());
 };
 
