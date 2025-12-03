@@ -45,6 +45,7 @@ export const Day2A = (values: string[]): void => {
     }
 
     console.log(`Day2A: The total of the invalid ID codes is: ${totalPartA}`);
+    // Answer: 52316131093
 }
 
 let totalPartB = 0;
@@ -73,7 +74,6 @@ export const Day2B = (values: string[]): void => {
     // Tries
     // 69,564,213,338 => Too high
     // 52,316,131,093 => too low (part A answer, should be lower because there should be more invalid's)
-    // 25,924,326 => Too low
 }
 
 const splitIntoChunks = (str: string, parts: number): number[] => {
@@ -101,7 +101,7 @@ export const missMatchId = (num: number): number => {
         return 0;
     }
 
-    for (let k = 2; k <= numberLength / 2; k++) {
+    for (let k = 2; k <= Math.floor(numberLength / 2); k++) {
         if (numberLength % k !== 0) {
             continue;
         }
@@ -117,7 +117,7 @@ export const missMatchId = (num: number): number => {
 }
 
 export const allPartsAreDivisible = (numArr: number[]): boolean => {
-    for (let i = 0; i < numArr.length; i++) {
+    for (let i = 1; i < numArr.length; i++) {
         if (numArr[i] !== numArr[0]) {
             return false;
         }

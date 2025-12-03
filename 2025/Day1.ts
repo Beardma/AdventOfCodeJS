@@ -24,6 +24,7 @@ export const Day1A = (values: string[]): void => {
     }
 
     console.log(`Day 1A: The number of 0's is: ${numberOfZero}`);
+    // Answer: 989
 };
 
 export const Day1B = (values: string[]): void => {
@@ -55,4 +56,5 @@ export const Day1B = (values: string[]): void => {
     }
 
     console.log(`Day 1B: The number of 0's is: ${numberOfZero}`);
+    // Answer: 5941
 };

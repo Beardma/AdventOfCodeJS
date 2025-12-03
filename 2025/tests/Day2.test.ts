@@ -47,6 +47,22 @@ const testPairs: testPairs[] = [
         input: 565655,
         output: 0,
     },
+    {
+        input: 2233422334,
+        output: 2233422334,
+    },
+    {
+        input: 2233522334,
+        output: 0,
+    },
+    {
+        input: 2222322,
+        output: 0,
+    },
+    {
+        input: 2323232,
+        output: 0,
+    },
 ]
 
 describe("Day 2 tests", () => {
