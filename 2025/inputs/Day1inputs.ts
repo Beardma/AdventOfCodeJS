@@ -4109,7 +4109,7 @@ L99
 R14
 L82`
 
-export const getText = (): string[] => {
+export const getInputDay1 = (): string[] => {
     return text.split("\n");
     // return testText.split("\n");
 };

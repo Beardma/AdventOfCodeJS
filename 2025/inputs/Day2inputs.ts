@@ -3,7 +3,7 @@ const testInput = `11-22,95-115,998-1012,1188511880-1188511890,222220-222224,169
 // const superTestInput = `11-22,98-112,4443-4445,565653-565659`;
 const superTestInput = `8294840594-8294926063,3773964-3884030,7718304-7809359,601947-677833,3434304207-3434405118,449-673,64525269-64702774,31545468-31784543,184451-308951,5771-11485`;
 
-export const getInput = (): string[] => {
+export const getInputDay2 = (): string[] => {
     return input.split(',');
     // return testInput.split(',');
     // return superTestInput.split(',');
