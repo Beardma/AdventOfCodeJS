@@ -57,15 +57,17 @@ export const Day2B = (values: string[]): void => {
     console.log(`Day2B: The total of the invalid ID codes is: ${getTotal()}`);
     // Tries
     // 69,564,213,338 => Too high
+    // 69,564,213,293 => The right answer. I FORGOT THAT SINGLE DIGITS NEED EXCLUDED
     // 52,316,131,093 => too low (part A answer, should be lower because there should be more invalid's)
 }
 
 export const missMatchId = (num: number): number => {
-    if (isRepeatingCharacter(String(num))) {
+    const numString: string = String(num);
+    if (numString.length >= 2 && isRepeatingCharacter(numString)) {
         return num;
     }
 
-    const numberLength: number = String(num).length;
+    const numberLength: number = numString.length;
     if (primeNo.includes(numberLength)) {
         return 0;
     }
@@ -75,7 +77,7 @@ export const missMatchId = (num: number): number => {
             continue;
         }
 
-        const chunks: number[] = splitIntoChunks(String(num), k);
+        const chunks: number[] = splitIntoChunks(numString, k);
 
         if (allPartsAreDivisible(chunks)) {
             return num;
