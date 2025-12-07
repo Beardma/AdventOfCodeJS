@@ -27,10 +27,23 @@ export const Day5A = (ranges: string[], values: string[]): void => {
 }
 
 export const Day5B = (ranges: string[]): void => {
+    let freshIds: number[] = [];
 
-    let freshIds = [];
+    const numRanges: Range[] = ranges.map(pair => {
+        const [start, end] = pair.split('-');
+        return { start: Number(start), end: Number(end) };
+    });
 
-    console.log(`Day5B: The total number of fresh ingredient ID's is: ${total}`);
+    for (let i = 0; i < numRanges.length; i++) {
+        for (let j = numRanges[i]!.start; j <= numRanges[i]!.end; j++) {
+            if (!freshIds.includes(j)) {
+                freshIds.push(j);
+            }
+        }
+        console.log(`Progress: ${i} / ${numRanges.leng}`)
+    }
+
+    console.log(`Day5B: The total number of fresh ingredient ID's is: ${freshIds.length}`);
 }
 
 type Range = {
