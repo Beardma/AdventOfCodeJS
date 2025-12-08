@@ -10,14 +10,14 @@ import { getInputDay4 } from './2025/inputs/Day4inputs';
 import { getInputDay5 } from './2025/inputs/Day5inputs';
 
 const main = () => {
-    // Day1A(getInputDay1());
-    // Day1B(getInputDay1());
-    // Day2A(getInputDay2());
-    // Day2B(getInputDay2());
-    // Day3A(getInputDay3());
-    // Day3B(getInputDay3());
-    // Day4A(getInputDay4());
-    // Day4B(getInputDay4());
+    Day1A(getInputDay1());
+    Day1B(getInputDay1());
+    Day2A(getInputDay2());
+    Day2B(getInputDay2());
+    Day3A(getInputDay3());
+    Day3B(getInputDay3());
+    Day4A(getInputDay4());
+    Day4B(getInputDay4());
     const { ranges, values } = getInputDay5();
     Day5A(ranges, values);
     Day5B(ranges);

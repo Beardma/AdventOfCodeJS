@@ -63,17 +63,6 @@ export const Day5B = (ranges: string[]): void => {
         }
     }
 
-    let counter = 1;
-    while (counter < newRanges.length) {
-        if (newRanges[counter - 1]!.end > newRanges[counter]!.start) {
-            newRanges[counter]!.start = newRanges[counter]!.start;
-            newRanges.splice(counter - 1, 1);
-        }
-        else {
-            counter++;
-        }
-    }
-
     let total = 0;
     for (let i = 0; i < newRanges.length; i++) {
         total += newRanges[i]!.end - newRanges[i]!.start + 1;
