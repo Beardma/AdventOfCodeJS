@@ -1,10 +1,9 @@
 export const Day6A = (input: string[][]): void => {
     // Transpose this shit because I am lazy
     const transposeInput = transpose(input);
-    // i 
 
     let total = 0;
-    for (let i = 0; i < input.length; i++) {
+    for (let i = 0; i < transposeInput.length; i++) {
         const operator = transposeInput[i]![transposeInput[i]!.length - 1];
         let rowTotal = Number(transposeInput[i]![0]);
         for (let j = 1; j < transposeInput[i]!.length - 1; j++) {
@@ -19,7 +18,7 @@ export const Day6A = (input: string[][]): void => {
     }
 
     console.log(`Day6A: The grand total is: ${total}`);
-    // 154917304 => Too low
+    // 4076006202939
 }
 
 export const Day6B = (input: string[][]): void => {
