@@ -1,4 +1,5 @@
 import { rootCertificates } from "tls";
+import { chai } from "vitest";
 
 export const Day7A = (input: string[]) => {
     let total = 0;
@@ -18,6 +19,7 @@ export const Day7A = (input: string[]) => {
         }
     }
 
+    // 1622
     console.log(`Day7A: The total number of tachyon splits is: ${total}`);
 }
 
@@ -26,25 +28,45 @@ export const Day7B = (input: string[]) => {
 
     const total = tachyonTimeline(firstParticle, input);
 
+    // 10357305916520
     console.log(`Day7B: The total number of quantum tachyon timelines is: ${total}`);
 }
 
-const tachyonTimeline = (
+export const tachyonTimeline = (
     particle: particle,
     dataSet: string[],
 ): number => {
-    if (particle.row === dataSet.length - 1) {
-        return 1;
+
+    const memo = new Map<string, number>();
+
+    // Recursion + memoization
+    const helper = (row: number, index: number): number => {
+        if (row === dataSet.length - 1) {
+            return 1;
+        }
+
+        const key = `${row}:${index}`;
+        const cached = memo.get(key);
+        if (cached !== undefined) {
+            return cached;
+        }
+
+        let result: number;
+
+        if (dataSet[row + 1]!.charAt(index) === '^') {
+            const left = helper(row + 1, index - 1);
+            const right = helper(row + 1, index + 1);
+            result = left + right;
+        }
+        else {
+            result = helper(row + 1, index);
+        }
+
+        memo.set(key, result);
+        return result;
     }
-    else if (dataSet[particle.row + 1]!.charAt(particle.index) === '^') {
-        const leftParticle = { index: particle.index - 1, row: particle.row + 1 };
-        const rightParticle = { index: particle.index + 1, row: particle.row + 1 };
-        return tachyonTimeline(leftParticle, dataSet) + tachyonTimeline(rightParticle, dataSet);
-    }
-    else {
-        const staightParticle = { index: particle.index, row: particle.row + 1 };
-        return tachyonTimeline(staightParticle, dataSet);
-    }
+
+    return helper(particle.row, particle.index);
 }
 
 type particle = {

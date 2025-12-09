@@ -161,6 +161,6 @@ const testInputs = `.......S.......
 ...............`;
 
 export const getInputDay7 = () => {
-    // return inputs.split('\n');
-    return testInputs.split('\n');
+    return inputs.split('\n');
+    // return testInputs.split('\n');
 }

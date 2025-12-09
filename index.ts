@@ -4,7 +4,7 @@ import { Day3A, Day3B } from './2025/Day3';
 import { Day4A, Day4B } from './2025/Day4';
 import { Day5A, Day5B } from './2025/Day5';
 import { Day6A, Day6B } from './2025/Day6';
-import { Day7A } from './2025/Day7';
+import { Day7A, Day7B } from './2025/Day7';
 import { getInputDay1 } from './2025/inputs/Day1inputs'
 import { getInputDay2 } from './2025/inputs/Day2inputs';
 import { getInputDay3 } from './2025/inputs/Day3inputs';
@@ -27,7 +27,8 @@ const main = () => {
     // Day5B(ranges);
     // Day6A(getInputDay6A());
     // Day6B(getInputDay6B());
-    Day7A(getInputDay7());
+    // Day7A(getInputDay7());
+    Day7B(getInputDay7());
 };
 
 main();
