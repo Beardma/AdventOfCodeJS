@@ -22,7 +22,38 @@ export const Day6A = (input: string[][]): void => {
 }
 
 export const Day6B = (input: string[][]): void => {
+    let total = 0;
 
+    input.forEach(item => {
+        // get the operator
+        const operator = item[item.length - 1]!.charAt(0);
+
+        const rowLength = item[0]!.length;
+        let numArr = [];
+        // column cursor
+        for (let i = 0; i < rowLength; i++) {
+            // row cursor
+            let num = ''
+            for (let j = 0; j < item.length - 1; j++) {
+                num += item[j]?.charAt(i);
+            }
+            num = num.trim();
+            numArr.push(num);
+        }
+
+        if (operator === '+') {
+            total += numArr.reduce((total, current) => {
+                return Number(total) + Number(current);
+            }, 0);
+        }
+        else {
+            total += numArr.reduce((total, current) => {
+                return Number(total) * Number(current);
+            }, 1);
+        }
+    });
+
+    console.log(`Day6B: The grand total is: ${total}`);
 }
 
 const transpose = (matrix: string[][]): string[][] => {

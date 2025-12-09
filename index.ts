@@ -9,7 +9,7 @@ import { getInputDay2 } from './2025/inputs/Day2inputs';
 import { getInputDay3 } from './2025/inputs/Day3inputs';
 import { getInputDay4 } from './2025/inputs/Day4inputs';
 import { getInputDay5 } from './2025/inputs/Day5inputs';
-import { getInputDay6 } from './2025/inputs/Day6inputs';
+import { getInputDay6A, getInputDay6B } from './2025/inputs/Day6inputs';
 
 const main = () => {
     // Day1A(getInputDay1());
@@ -23,8 +23,8 @@ const main = () => {
     // const { ranges, values } = getInputDay5();
     // Day5A(ranges, values);
     // Day5B(ranges);
-    Day6A(getInputDay6())
-    Day6B(getInputDay6())
+    // Day6A(getInputDay6A())
+    Day6B(getInputDay6B())
 };
 
 main();

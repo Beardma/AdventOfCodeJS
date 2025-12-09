@@ -10,7 +10,7 @@ const testInputs = `123 328  51 64
   6 98  215 314
 *   +   *   +  `;
 
-export const getInputDay6 = (): string[][] => {
+export const getInputDay6A = (): string[][] => {
     const array = inputs;
     // const array = testInputs;
 
@@ -25,4 +25,38 @@ export const getInputDay6 = (): string[][] => {
         });
 
     return temp;
+}
+
+export const getInputDay6B = (): string[][] => {
+    const array = inputs;
+    // const array = testInputs;
+
+    const splitArr = array
+        .split('\n');
+
+    let finalArr: string[][] = [];
+
+    const operatorRow = splitArr.length - 1;
+    let newObj: string[] = [];
+
+    // cursor accross row
+    for (let i = 0; i < splitArr[0]!.length; i++) {
+        const testChar = splitArr[operatorRow]!.charAt(i);
+        if (testChar === '+' || testChar === '*') {
+            if (newObj.length > 0) {
+                newObj.forEach((row, index) => newObj[index] = row.slice(0, -1));
+                finalArr.push(newObj);
+            }
+            newObj = []
+        }
+
+        // cursor for each column
+        for (let j = 0; j < splitArr.length; j++) {
+            newObj[j] = (newObj[j] ?? "") + splitArr[j]!.charAt(i);
+        }
+    }
+
+    finalArr.push(newObj);
+
+    return finalArr;
 }
