@@ -33,10 +33,10 @@ const main = () => {
     // Day6B(getInputDay6B());
     // Day7A(getInputDay7());
     // Day7B(getInputDay7());
-    Day8A(getInputDay8());
-    Day8B(getInputDay8());
-    // Day9A(getInputDay9());
-    // Day9B(getInputDay9());
+    // Day8A(getInputDay8());
+    // Day8B(getInputDay8());
+    Day9A(getInputDay9());
+    Day9B(getInputDay9());
 };
 
 main();
