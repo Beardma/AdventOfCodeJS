@@ -505,6 +505,6 @@ const testInput = `7,1
 7,3`;
 
 export const getInputDay9 = (): string[] => {
-    // return input.split('\n');
-    return testInput.split('\n');
+    return input.split('\n');
+    // return testInput.split('\n');
 }
